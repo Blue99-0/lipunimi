@@ -129,48 +129,46 @@ const words = { // tried to use JSON in another file but i couldnt figure out ho
   "wile": "to want, need, wish, have to, must, will, should<br>desire, need, will<br>necessary"
 }
 
-function searchdic (words, substring) {
-
-  let arr = []
+function searchdic(words, substring) {
+  let arr = [];
 
   for (let key in words) {
-    if (key.startsWith(substring)) {
-      arr.push(key);    
+    // Check if the word starts with the substring or if its meaning contains the substring
+    if (key.startsWith(substring) || words[key].includes(substring)) {
+      arr.push(key);
     }
   }
+
   return arr;
-};
+}
 
 function search_word() {
-  console.log("surched");
-  let word = $("#searchword").val();
-    
+  console.log("searched");
+  let word = $("#searchword").val().trim().toLowerCase(); // Trim and convert to lowercase for case-insensitive search
+
   let wordsstr = "";
 
   let words_arr = searchdic(words, word);
 
   console.log(words_arr);
-    
-  for (let word in words_arr) {
-    let meaning = words[words_arr[word]];
+
+  for (let word of words_arr) {
+    let meaning = words[word];
     wordsstr += `
       <div style="text-align: center; background-color: #313835; width: 50%; margin: 10px auto; border-radius: 10px;
       padding: 5px;
       ">
-        <p><bold>${words_arr[word]}</bold></p>
+        <p><bold>${word}</bold></p>
         <br>
         <p>${meaning}</p>
       </div>
-    `; 
+    `;
     console.log(meaning);
   }
 
-  wordsstr = wordsstr;
-
-  console.log(wordsstr);
- 
   $("#list").html(wordsstr);
 }
 
 $(document).ready(search_word);
+
 
