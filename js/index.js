@@ -129,11 +129,6 @@ const words = { // tried to use JSON in another file but i couldnt figure out ho
   "wile": "to want, need, wish, have to, must, will, should<br>desire, need, will<br>necessary"
 }
 
-$.getJSON("https://github.com/Blue99-0/lipunimi/blob/main/js%2Fwords.json", function(json) {
-    console.log(json); 
-    words = json;
-});
-
 function searchdic(words, substring) {
   let arr = [];
 
