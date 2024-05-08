@@ -129,13 +129,18 @@ const words = { // tried to use JSON in another file but i couldnt figure out ho
   "wile": "to want, need, wish, have to, must, will, should<br>desire, need, will<br>necessary"
 }
 
+$.getJSON("https://github.com/Blue99-0/lipunimi/blob/main/js%2Fwords.json", function(json) {
+    console.log(json); 
+    words = json;
+});
+
 function searchdic(words, substring) {
   let arr = [];
 
   for (let key in words) {
     // Check if the word starts with the substring or if its meaning contains the substring
-    if (key.startsWith(substring) || words[key].includes(substring)) {
-      arr.push(key);
+    if (key.text.startsWith(substring) || words[key].synonims.includes(substring)) {
+      arr.push(key.text);
     }
   }
 
