@@ -541,6 +541,6 @@ function search_word() {
   $("#list").html(wordsstr);
 }
 
-$(document).ready(search_word);
+$(document).ready(search_word); 
 
 
