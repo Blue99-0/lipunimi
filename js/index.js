@@ -169,7 +169,7 @@ const words = { // tried to use json, didnt figure out how to read it from js
     },
     "li": {
         "text": "sep - (between any subject except mi and sina and its verb; also used to introduce a new verb for the same subject)",
-        "synonyms": ""
+        "synonyms": "is, are, am"
     },
     "lili": {
         "text": "mod - small, little, young, a bit, short, few, less<br>vt - reduce, shorten, shrink, lessen",
