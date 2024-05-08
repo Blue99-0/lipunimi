@@ -1,4 +1,4 @@
-const words = { // tried to use json, didnt figure out how to read it from js
+const words = { // tried to use json, didnt figure out how to read it from js...
     "a": {
         "text": "interj - ah, ha, uh, oh, ooh, aw, well (emotion word)",
         "synonyms": "ah, ha, uh, oh, ooh, aw, well"
