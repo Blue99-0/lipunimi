@@ -36,8 +36,8 @@ const words = { // tried to use json, didnt figure out how to read it from js...
         "synonyms": "or"
     },
     "awen": {
-        "text": "vi - stay, wait, remain<br>vt - keep<br>mod - remaining, stationary, permanent, sedentary",
-        "synonyms": "stay, wait, keep, remaining, stationary, permanent, sedentary"
+        "text": "vi - stay, wait, remain, stop<br>vt - keep, stop<br>mod - remaining, stationary, permanent, sedentary",
+        "synonyms": "stay, wait, keep, remaining, stationary, permanent, sedentary, stop"
     },
     "e": {
         "text": "sep - (introduces a direct object)",
