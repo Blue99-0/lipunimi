@@ -221,7 +221,7 @@ const words = { // tried to use json, didnt figure out how to read it from js
     },
     "mi": {
         "text": "n - I, we<br>mod - my, our",
-        "synonyms": "I, we, my, our"
+        "synonyms": "i, we, my, our, me"
     },
     "mije": {
         "text": "n - man, male, boy, husband, boyfriend<br>mod - male, masculine, manly",
