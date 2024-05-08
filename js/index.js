@@ -501,6 +501,19 @@ const words = {
   }
 }
 
+searchmeaning(mean, sub) {
+  let arr = mean.split(", ");
+  let found = false;
+
+  for (let meaning in arr) {
+    if (meaning.startsWith(sub)) {
+       found = true;
+    }
+  }
+
+  return found;
+}
+
 function searchdic(words, substring) {
   let arr = [];
 
