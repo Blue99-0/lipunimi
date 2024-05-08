@@ -501,7 +501,7 @@ const words = {
   }
 }
 
-searchmeaning(mean, sub) {
+function searchmeaning(mean, sub) {
   let arr = mean.split(", ");
   let found = false;
 
@@ -519,7 +519,7 @@ function searchdic(words, substring) {
 
   for (let key in words) {
     // Check if the word starts with the substring or if its meaning contains the substring
-    if (key.text.startsWith(substring) || words[key].synonims.includes(substring)) {
+    if (key.text.startsWith(substring) || searchmeaning(key.synonyms, substring) {
       arr.push(key.text);
     }
   }
