@@ -69,7 +69,7 @@ const words = { // tried to use json, didnt figure out how to read it from js...
     },
     "jaki": {
         "text": "mod - dirty, gross, filthy<br>n - dirt, pollution, garbage, filth<br>vt - pollute, dirty<br>interj - ew! yuck!",
-        "synonyms": "dirty, gross, filthy, dirt, pollution, garbage, filth, pollute, ew, yuck"
+        "synonyms": "dirty, gross, filthy, dirt, pollution, garbage, filth, pollute, ew, yuck, poop, shit, crap"
     },
     "jan": {
         "text": "n - person, people, human, being, somebody, anybody<br>mod - human, somebody's, personal, of people<br>vt - personify, humanize, personalize",
