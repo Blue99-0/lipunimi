@@ -1,504 +1,132 @@
-const words = {
-  "a": {
-    "text": "ah, ha, uh, oh, ooh, aw, well (emotion word)",
-    "synonyms": "ah, ha, uh, oh, ooh, aw, well"
-  },
-  "akesi": {
-    "text": "non-cute animal, reptile, amphibian",
-    "synonyms": "turtle, reptile, amphibian"
-  },
-  "ala": {
-    "text": "no, not, none, un- nothing, negation, zero no!",
-    "synonyms": "no, not, none, un-, nothing, negation, zero"
-  },
-  "alasa": {
-    "text": "gather, hunt, forage",
-    "synonyms": "gather, hunt, forage"
-  },
-  "ale": {
-    "text": "everything, anything, life, universe all, every, complete, whole",
-    "synonyms": "everything, anything, life, universe, all, every, complete, whole"
-  },
-  "ali": {
-    "text": "everything, anything, life, universe all, every, complete, whole",
-    "synonyms": "everything, anything, life, universe, all, every, complete, whole"
-  },
-  "anpa": {
-    "text": "bottom, lower part, under, below, floor, beneath low, lower, bottom, down, lowly, humble, dependant",
-    "synonyms": "bottom, lower part, under, below, floor, beneath, low, lower, down, lowly, humble, dependant"
-  },
-  "ante": {
-    "text": "difference different otherwise, or else change, alter, modify",
-    "synonyms": "difference, different, otherwise, or else, change, alter, modify"
-  },
-  "anu": {
-    "text": "or",
-    "synonyms": "or"
-  },
-  "awen": {
-    "text": "stay, wait, remain keep remaining, stationary, permanent, sedentary",
-    "synonyms": "stay, wait, remain, keep, remaining, stationary, permanent, sedentary"
-  },
-  "e": {
-    "text": "(introduces a direct object)",
-    "synonyms": "introduces a direct object"
-  },
-  "en": {
-    "text": "and (used to coordinate head nouns)",
-    "synonyms": "and, coordinate head nouns"
-  },
-  "esun": {
-    "text": "market, shop, business, trading, selling, buying",
-    "synonyms": "market, shop, business, trading, selling, buying"
-  },
-  "ijo": {
-    "text": "thing, something, stuff, anything, object of something objectify",
-    "synonyms": "thing, something, stuff, anything, object, objectify"
-  },
-  "ike": {
-    "text": "bad, negative, wrong, evil, overly complex, (figuratively) unhealthy oh dear! woe! alas! negativity, badness, evil to make bad, to worsen, to have a negative effect upon to be bad, to suck",
-    "synonyms": "bad, negative, wrong, evil, overly complex, unhealthy, oh dear, woe, alas, negativity, badness, evil, worsen, negative effect, suck"
-  },
-  "ilo": {
-    "text": "tool, device, machine, thing used for a specific purpose",
-    "synonyms": "tool, device, machine, thing, specific purpose"
-  },
-  "insa": {
-    "text": "inside, inner world, centre, stomach inner, internal",
-    "synonyms": "inside, inner world, centre, stomach, inner, internal"
-  },
-  "jaki": {
-    "text": "dirty, gross, filthy dirt, pollution, garbage, filth to pollute, dirty ew! yuck!",
-    "synonyms": "dirty, gross, filthy, dirt, pollution, garbage, filth, pollute, dirty, ew, yuck"
-  },
-  "jan": {
-    "text": "person, people, human, being, somebody, anybody human, somebody's, personal, of people to personify, humanize, personalize",
-    "synonyms": "person, people, human, being, somebody, anybody, personal, people, personify, humanize, personalize"
-  },
-  "jelo": {
-    "text": "yellow, light green",
-    "synonyms": "yellow, light green"
-  },
-  "jo": {
-    "text": "have, contain having receive, get, take, obtain",
-    "synonyms": "have, contain, having, receive, get, take, obtain"
-  },
-  "kala": {
-    "text": "fish, sea creature",
-    "synonyms": "fish, sea creature"
-  },
-  "kalama": {
-    "text": "sound, noise, voice make noise sound, ring, play (an instrument)",
-    "synonyms": "sound, noise, voice, make noise, ring, play (an instrument)"
-  },
-  "kama": {
-    "text": "come, become, arrive, happen, pursue actions to arrive to (a certain state), manage to, start to event, happening, chance, arrival, beginning coming, future bring about, summon",
-    "synonyms": "come, become, arrive, happen, pursue actions, manage, start, event, happening, chance, arrival, beginning, coming, future, bring about, summon"
-  },
-  "kasi": {
-    "text": "plant, leaf, herb, tree, wood",
-    "synonyms": "plant, leaf, herb, tree, wood"
-  },
-  "ken": {
-    "text": "can, is able to, is allowed to, may, is possible possibility, ability, power to do things, permission make possible, enable, allow, permit it is possible that",
-    "synonyms": "can, able to, allowed to, may, possible, possibility, ability, power, permission, make possible, enable, permit, possible"
-  },
-  "kepeken": {
-    "text": "use with",
-    "synonyms": "use, with"
-  },
-  "kili": {
-    "text": "fruit, vegetable, mushroom",
-    "synonyms": "fruit, vegetable, mushroom"
-  },
-  "kin": {
-    "text": "also, too, even, indeed (emphasizes the word(s) before it)",
-    "synonyms": "also, too, even, indeed"
-  },
-  "kipisi": {
-    "text": "part, partition split, cut, divide",
-    "synonyms": "part, partition, split, cut, divide"
-  },
-  "kiwen": {
-    "text": "hard, solid, stone-like, made of stone or metal hard thing, rock, stone, metal, mineral, clay",
-    "synonyms": "hard, solid, stone-like, stone, metal, mineral, clay"
-  },
-  "ko": {
-    "text": "semi-solid or squishy substance, e.g. paste, powder, gum",
-    "synonyms": "semi-solid, squishy substance, paste, powder, gum"
-  },
-  "kon": {
-    "text": "air, wind, smell, soul air-like, ethereal, gaseous",
-    "synonyms": "air, wind, smell, soul, air-like, ethereal, gaseous"
-  },
-  "kule": {
-    "text": "colour, paint colourful colour, paint",
-    "synonyms": "colour, paint, colourful"
-  },
-  "kulupu": {
-    "text": "group, community, society, company, people communal, shared, public, of the society",
-    "synonyms": "group, community, society, company, people, communal, shared, public"
-  },
-  "kute": {
-    "text": "listen, hear auditory, hearing",
-    "synonyms": "listen, hear, auditory, hearing"
-  },
-  "la": {
-    "text": "(between adverb or phrase of context and sentence)",
-    "synonyms": "between adverb or phrase of context and sentence"
-  },
-  "lape": {
-    "text": "sleep, rest sleeping, of sleep",
-    "synonyms": "sleep, rest, sleeping"
-  },
-  "laso": {
-    "text": "blue, blue-green",
-    "synonyms": "blue, blue-green"
-  },
-  "lawa": {
-    "text": "head, mind main, leading, in charge lead, control, rule, steer",
-    "synonyms": "head, mind, main, leading, in charge, lead, control, rule, steer"
-  },
-  "len": {
-    "text": "clothing, cloth, fabric",
-    "synonyms": "clothing, cloth, fabric"
-  },
-  "lete": {
-    "text": "cold cold, uncooked cool down, chill",
-    "synonyms": "cold, uncooked, cool down, chill"
-  },
-  "li": {
-    "text": "(between any subject except mi and sina and its verb; also used to introduce a new verb for the same subject)",
-    "synonyms": "between subject, introduce new verb"
-  },
-  "lili": {
-    "text": "small, little, young, a bit, short, few, less reduce, shorten, shrink, lessen",
-    "synonyms": "small, little, young, bit, short, few, less, reduce, shorten, shrink, lessen"
-  },
-  "linja": {
-    "text": "long, very thin, floppy thing, e.g. string, rope, hair, thread, cord, chain",
-    "synonyms": "long, thin, floppy thing, string, rope, hair, thread, cord, chain"
-  },
-  "lipu": {
-    "text": "flat and bendable thing, e.g. paper, card, ticket",
-    "synonyms": "flat, bendable thing, paper, card, ticket"
-  },
-  "loje": {
-    "text": "red darkness, shadows",
-    "synonyms": "red, darkness, shadows"
-  },
-  "lon": {
-    "text": "be (located) in/at/on be there, be present, be real/true, exist, be awake",
-    "synonyms": "be, located, present, real, exist, awake"
-  },
-  "luka": {
-    "text": "hand, arm",
-    "synonyms": "hand, arm"
-  },
-  "lukin": {
-    "text": "see, look at, watch, read look, watch out, pay attention visual(ly)",
-    "synonyms": "see, look at, watch, read, look, watch out, pay attention, visual"
-  },
-  "lupa": {
-    "text": "hole, orifice, window, door",
-    "synonyms": "hole, orifice, window, door"
-  },
-  "ma": {
-    "text": "land, earth, country, (outdoor) area",
-    "synonyms": "land, earth, country, area"
-  },
-  "mama": {
-    "text": "parent, mother, father of the parent, parental, maternal, fatherly",
-    "synonyms": "parent, mother, father, parental, maternal, fatherly"
-  },
-  "mani": {
-    "text": "money, material wealth, currency, dollar, capital",
-    "synonyms": "money, wealth, currency, dollar, capital"
-  },
-  "meli": {
-    "text": "woman, female, girl, wife, girlfriend female, feminine, womanly",
-    "synonyms": "woman, female, girl, wife, girlfriend, feminine, womanly"
-  },
-  "mi": {
-    "text": "I, we my, our",
-    "synonyms": "I, we, my, our"
-  },
-  "mije": {
-    "text": "man, male, boy, husband, boyfriend male, masculine, manly",
-    "synonyms": "man, male, boy, husband, boyfriend, masculine, manly"
-  },
-  "moku": {
-    "text": "food, meal eat, drink, swallow, ingest, consume",
-    "synonyms": "food, meal, eat, drink, swallow, ingest, consume"
-  },
-  "moli": {
-    "text": "death die, be dead kill, dead, deadly, fatal",
-    "synonyms": "death, die, dead, kill, deadly, fatal"
-  },
-  "monsi": {
-    "text": "back, rear end, butt, behind back, rear",
-    "synonyms": "back, rear end, butt, behind, rear"
-  },
-  "mu": {
-    "text": "woof! meow! moo! etc. (animal noise)",
-    "synonyms": "woof, meow, moo, animal noise"
-  },
-  "mun": {
-    "text": "moon lunar",
-    "synonyms": "moon, lunar"
-  },
-  "musi": {
-    "text": "fun, playing, game, recreation, art, entertainment artful, fun, recreational play, have fun amuse, entertain",
-    "synonyms": "fun, playing, game, recreation, art, entertainment, artful, recreational, play, have fun, amuse, entertain"
-  },
-  "mute": {
-    "text": "many, very, much, several, a lot, abundant, numerous, more amount, quantity make many or much",
-    "synonyms": "many, very, much, several, lot, abundant, numerous, more, amount, quantity, make many or much"
-  },
-  "namako": {
-    "text": "food additive, accessory, something extra season, embellish, stimulate",
-    "synonyms": "food additive, accessory, something extra, season, embellish, stimulate"
-  },
-  "nanpa": {
-    "text": "number -th (ordinal numbers)",
-    "synonyms": "number, ordinal numbers"
-  },
-  "nasa": {
-    "text": "silly, crazy, foolish, drunk, strange, stupid, weird drive crazy, make weird",
-    "synonyms": "silly, crazy, foolish, drunk, strange, stupid, weird, drive crazy, make weird"
-  },
-  "nasin": {
-    "text": "way, manner, custom, road, path, doctrine, system, method",
-    "synonyms": "way, manner, custom, road, path, doctrine, system, method"
-  },
-  "nena": {
-    "text": "bump, nose, hill, mountain, button",
-    "synonyms": "bump, nose, hill, mountain, button"
-  },
-  "ni": {
-    "text": "this, that",
-    "synonyms": "this, that"
-  },
-  "nimi": {
-    "text": "word, name",
-    "synonyms": "word, name"
-  },
-  "noka": {
-    "text": "leg, foot",
-    "synonyms": "leg, foot"
-  },
-  "o": {
-    "text": "O (vocative or imperative) hey! (calling somebody's attention)",
-    "synonyms": "O, hey, calling somebody's attention"
-  },
-  "oko": {
-    "text": "eye",
-    "synonyms": "eye"
-  },
-  "olin": {
-    "text": "love love to love",
-    "synonyms": "love, to love"
-  },
-  "ona": {
-    "text": "she, he, it, they her, his, its, their",
-    "synonyms": "she, he, it, they, her, his, its, their"
-  },
-  "open": {
-    "text": "open, turn on",
-    "synonyms": "open, turn on"
-  },
-  "pakala": {
-    "text": "blunder, accident, mistake, destruction, damage, breaking screw up, fuck up, botch, ruin, break, hurt, injure, damage, spoil, ruin",
-    "synonyms": "blunder, accident, mistake, destruction, damage, breaking, screw up, fuck up, botch, ruin, break, hurt, injure, spoil"
-  },
-  "pali": {
-    "text": "activity, work, deed, project active, work-related, operating, working do, make, build, create act, work, function",
-    "synonyms": "activity, work, deed, project, active, work-related, operating, working, do, make, build, create, act, work, function"
-  },
-  "palisa": {
-    "text": "long, mostly hard object, e.g. rod, stick, branch",
-    "synonyms": "long, mostly hard object, rod, stick, branch"
-  },
-  "pan": {
-    "text": "grain, cereal",
-    "synonyms": "grain, cereal"
-  },
-  "pana": {
-    "text": "give, put, send, place, release, emit, cause giving, transfer, exchange",
-    "synonyms": "give, put, send, place, release, emit, cause, giving, transfer, exchange"
-  },
-  "pi": {
-    "text": "of, belonging to",
-    "synonyms": "of, belonging to"
-  },
-  "pilin": {
-    "text": "feelings, emotion, heart feel feel, think, sense, touch",
-    "synonyms": "feelings, emotion, heart, feel, think, sense, touch"
-  },
-  "pimeja": {
-    "text": "black, dark darkness, shadows darken",
-    "synonyms": "black, dark, darkness, shadows, darken"
-  },
-  "pini": {
-    "text": "end, tip completed, finished, past, done, ago finish, close, end, turn off",
-    "synonyms": "end, tip, completed, finished, past, done, ago, finish, close, turn off"
-  },
-  "pipi": {
-    "text": "bug, insect, spider",
-    "synonyms": "bug, insect, spider"
-  },
-  "poka": {
-    "text": "side, hip, next to in the accompaniment of, with neighbouring",
-    "synonyms": "side, hip, next to, with, neighbouring"
-  },
-  "poki": {
-    "text": "container, box, bowl, cup, glass",
-    "synonyms": "container, box, bowl, cup, glass"
-  },
-  "pona": {
-    "text": "good, simplicity, positivity good, simple, positive, nice, correct, right great! good! thanks! OK! cool! yay! improve, fix, repair, make good",
-    "synonyms": "good, simplicity, positivity, great, thanks, improve, fix, repair"
-  },
-  "pu": {
-    "text": "interact with the official toki pona book",
-    "synonyms": "interact with the official toki pona book"
-  },
-  "sama": {
-    "text": "same, similar, equal, of equal status fellow, sibling, peer similar to, resembling, like, as if",
-    "synonyms": "same, similar, equal, of equal status, fellow, sibling, peer, resembling, like"
-  },
-  "seli": {
-    "text": "fire, warmth hot, warm heat up, warm up, cook, heat",
-    "synonyms": "fire, warmth, hot, warm, heat up, warm up, cook"
-  },
-  "selo": {
-    "text": "surface, skin, shell",
-    "synonyms": "surface, skin, shell"
-  },
-  "seme": {
-    "text": "what? which?",
-    "synonyms": "what, which"
-  },
-  "sewi": {
-    "text": "high, above, top, elevated religion, ritual, supernatural, spiritual, sacred, divine holy, sacred, religious, spiritual, supernatural, divine",
-    "synonyms": "high, above, top, elevated, religion, ritual, supernatural, spiritual, sacred, divine, holy, religious"
-  },
-  "sijelo": {
-    "text": "body physical",
-    "synonyms": "body, physical"
-  },
-  "sike": {
-    "text": "circle, wheel round or spherical thing, ball, wheel",
-    "synonyms": "circle, wheel, round, spherical thing, ball"
-  },
-  "sin": {
-    "text": "new, fresh, another more, again, further, extra, increase, additional, enhance anew, afresh",
-    "synonyms": "new, fresh, another, more, again, further, extra, increase, additional, enhance, anew, afresh"
-  },
-  "sina": {
-    "text": "you, your",
-    "synonyms": "you, your"
-  },
-  "sinpin": {
-    "text": "front, chest, torso",
-    "synonyms": "front, chest, torso"
-  },
-  "sitelen": {
-    "text": "picture, image",
-    "synonyms": "picture, image"
-  },
-  "sona": {
-    "text": "knowledge, wisdom, intelligence know, understand, know how",
-    "synonyms": "knowledge, wisdom, intelligence, know, understand, know-how"
-  },
-  "soweli": {
-    "text": "animal, beast, land mammal",
-    "synonyms": "animal, beast, land mammal"
-  },
-  "suli": {
-    "text": "big, tall, long, adult, important size, importance enlarge, lengthen, extend",
-    "synonyms": "big, tall, long, adult, important, size, importance, enlarge, lengthen, extend"
-  },
-  "suno": {
-    "text": "sun light, brighten",
-    "synonyms": "sun, light, brighten"
-  },
-  "supa": {
-    "text": "horizontal surface, furniture, table, chair",
-    "synonyms": "horizontal surface, furniture, table, chair"
-  },
-  "suwi": {
-    "text": "sweet, cute candy, sweet food, dessert",
-    "synonyms": "sweet, cute, candy, sweet food, dessert"
-  },
-  "tan": {
-    "text": "from, by from, because of, since, origin, cause",
-    "synonyms": "from, because of, since, origin, cause"
-  },
-  "taso": {
-    "text": "but",
-    "synonyms": "but"
-  },
-  "tawa": {
-    "text": "to, for, in order to, towards, until move, go, travel, walk (to/for) move, transport",
-    "synonyms": "to, for, in order to, towards, until, move, go, travel, walk, transport"
-  },
-  "telo": {
-    "text": "water, liquid, juice, sauce, beverage, damp, wet, moisturize wash, liquid",
-    "synonyms": "water, liquid, juice, sauce, beverage, damp, wet, moisturize, wash"
-  },
-  "tenpo": {
-    "text": "time, period of time",
-    "synonyms": "time, period of time"
-  },
-  "toki": {
-    "text": "language, talk, speech, communication speak, talk, say, converse, chat",
-    "synonyms": "language, talk, speech, communication, speak, talk, say, converse, chat"
-  },
-  "tomo": {
-    "text": "house, home, building, room, (modern) construction, shelter",
-    "synonyms": "house, home, building, room, construction, shelter"
-  },
-  "tu": {
-    "text": "two, pair couple, double, twin divide by two",
-    "synonyms": "two, pair, couple, double, twin, divide by two"
-  },
-  "unpa": {
-    "text": "sex, sexuality, having sex sexual",
-    "synonyms": "sex, sexuality, having sex, sexual"
-  },
-  "uta": {
-    "text": "mouth oral",
-    "synonyms": "mouth, oral"
-  },
-  "utala": {
-    "text": "conflict, fight, hit, beat, battle, attack, harm, defeat conflict, fight",
-    "synonyms": "conflict, fight, hit, beat, battle, attack, harm, defeat"
-  },
-  "walo": {
-    "text": "white, light colour, white thing",
-    "synonyms": "white, light, color, white thing"
-  },
-  "wan": {
-    "text": "one, a",
-    "synonyms": "one, a"
-  },
-  "waso": {
-    "text": "bird, flying creature",
-    "synonyms": "bird, flying creature"
-  },
-  "wawa": {
-    "text": "energy, strength, power strong, energetic, intense empower, strengthen",
-    "synonyms": "energy, strength, power, strong, energetic, intense, empower, strengthen"
-  },
-  "weka": {
-    "text": "away, absent, missing, remove, eliminate",
-    "synonyms": "away, absent, missing, remove, eliminate"
-  },
-  "wile": {
-    "text": "to want, need, wish, have to, must, will, should desire, necessity, neediness wish, want, need, require, should",
-    "synonyms": "want, need, wish, have to, must, will, should, desire, necessity, neediness, require"
-  }
+const words = { // tried to use JSON in another file but i couldnt figure out how t load it.
+  "a": "ah, ha, uh, oh, ooh, aw, well (emotion word)",
+  "akesi": "non-cute animal, reptile, amphibian",
+  "ala": "no, not, none, un-<br>nothing, negation, zero<br>no!",
+  "alasa": "gather, hunt, forage",
+  "ale": "everything, anything, life, universe<br>all, every, complete, whole",
+  "ali": "everything, anything, life, universe<br>all, every, complete, whole",
+  "anpa": "bottom, lower part, under, below, floor, beneath<br>low, lower, bottom, down, lowly, humble, dependant",
+  "ante": "difference<br>different<br>otherwise, or else<br>change, alter, modify",
+  "anu": "or",
+  "awen": "stay, wait, remain<br>keep<br>remaining, stationary, permanent, sedentary",
+  "e": "(introduces a direct object)",
+  "en": "and (used to coordinate head nouns)",
+  "esun": "market, shop, business, trading, selling, buying",
+  "ijo": "thing, something, stuff, anything, object<br>of something<br>objectify",
+  "ike": "bad, negative, wrong, evil, overly complex, (figuratively) unhealthy<br>oh dear! woe! alas!<br>negativity, badness, evil<br>to make bad, to worsen, to have a negative effect upon<br>to be bad, to suck",
+  "ilo": "tool, device, machine, thing used for a specific purpose",
+  "insa": "inside, inner world, centre, stomach<br>inner, internal",
+  "jaki": "dirty, gross, filthy<br>dirt, pollution, garbage, filth<br>pollute, dirty<br>ew! yuck!",
+  "jan": "person, people, human, being, somebody, anybody<br>human, somebody's, personal, of people<br>personify, humanize, personalize",
+  "jelo": "yellow, light green",
+  "jo": "have, contain<br>having<br>receive, get, take, obtain",
+  "kala": "fish, sea creature",
+  "kalama": "sound, noise, voice<br>make noise<br>sound, ring, play (an instrument)",
+  "kama": "come, become, arrive, happen, pursue actions to arrive to (a certain state), manage to, start to<br>event, happening, chance, arrival, beginning<br>coming, future<br>bring about, summon<br>come up",
+  "kasi": "plant, leaf, herb, tree, wood",
+  "ken": "can, is able to, is allowed to, may, is possible<br>possibility, ability, power to do things, permission<br>make possible, enable, allow, permit<br>it is possible that",
+  "kepeken": "use<br>with",
+  "kili": "fruit, vegetable, mushroom",
+  "kin": "also, too, even, indeed (emphasizes the word(s) before it)",
+  "kipisi": "part, partition<br>split, cut, divide",
+  "kiwen": "hard, solid, stone-like, made of stone or metal<br>hard thing, rock, stone, metal, mineral, clay",
+  "ko": "semi-solid or squishy substance, e.g. paste, powder, gum",
+  "kon": "air, wind, smell, soul<br>air-like, ethereal, gaseous",
+  "kule": "colour, paint<br>colourful<br>colour, paint",
+  "kulupu": "group, community, society, company, people<br>communal, shared, public, of the society",
+  "kute": "listen, hear<br>auditory, hearing",
+  "la": "(between adverb or phrase of context and sentence)",
+  "lape": "sleep, rest<br>sleeping, of sleep",
+  "laso": "blue, blue-green",
+  "lawa": "head, mind<br>main, leading, in charge<br>lead, control, rule, steer",
+  "len": "clothing, cloth, fabric",
+  "lete": "cold<br>cold, uncooked<br>cool down, chill",
+  "li": "(between any subject except mi and sina and its verb; also used to introduce a new verb for the same subject)",
+  "lili": "small, little, young, a bit, short, few, less<br>reduce, shorten, shrink, lessen",
+  "linja": "long, very thin, floppy thing, e.g. string, rope, hair, thread, cord, chain",
+  "lipu": "flat and bendable thing, e.g. paper, card, ticket",
+  "loje": "red",
+  "lon": "be (located) in/at/on<br>be there, be present, be real/true, exist, be awake",
+  "luka": "hand, arm",
+  "lukin": "see, look at, watch, read<br>look, watch out, pay attention<br>visual(ly)",
+  "lupa": "hole, orifice, window, door",
+  "ma": "land, earth, country, (outdoor) area",
+  "mama": "parent, mother, father<br>of the parent, parental, maternal, fatherly",
+  "mani": "money, material wealth, currency, dollar, capital",
+  "meli": "woman, female, girl, wife, girlfriend<br>female, feminine, womanly",
+  "mi": "I, we<br>my, our",
+  "mije": "man, male, boy, husband, boyfriend<br>male, masculine, manly",
+  "moku": "food, meal<br>eat, drink, swallow, ingest, consume",
+  "moli": "death<br>die, be dead<br>kill<br>dead, deadly, fatal",
+  "monsi": "back, rear end, butt, behind<br>back, rear",
+  "mu": "woof! meow! moo! etc. (animal noise)",
+  "mun": "moon<br>lunar",
+  "musi": "fun, playing, game, recreation, art, entertainment<br>artful, fun, recreational<br>play, have fun<br>amuse, entertain",
+  "mute": "many, very, much, several, a lot, abundant, numerous, more<br>amount, quantity<br>make many or much",
+  "namako": "food additive, accessory, something extra<br>season, embellish, stimulate",
+  "nanpa": "number<br>-th (ordinal numbers)",
+  "nasa": "silly, crazy, foolish, drunk, strange, stupid, weird<br>drive crazy, make weird",
+ 
+
+ "nasin": "way, manner, custom, road, path, doctrine, system, method",
+  "nena": "bump, nose, hill, mountain, button",
+  "ni": "this, that",
+  "nimi": "word, name",
+  "noka": "leg, foot",
+  "o": "O (vocative or imperative)<br>hey! (calling somebody's attention)",
+  "oko": "eye",
+  "olin": "love<br>love<br>to love (a person)",
+  "ona": "she, he, it, they<br>her, his, its, their",
+  "open": "open, turn on",
+  "pakala": "blunder, accident, mistake, destruction, damage, breaking<br>screw up, fuck up, botch, ruin, break, hurt, injure, damage, spoil, ruin<br>damn! fuck!",
+  "pali": "activity, work, deed, project<br>active, work-related, operating, working<br>do, make, build, create<br>act, work, function",
+  "palisa": "long, mostly hard object, e.g. rod, stick, branch",
+  "pan": "grain, cereal",
+  "pana": "give, put, send, place, release, emit, cause<br>giving, transfer, exchange",
+  "pi": "of, belonging to",
+  "pilin": "feelings, emotion, heart<br>feel<br>feel, think, sense, touch",
+  "pimeja": "black, dark<br>darkness, shadows<br>darken",
+  "pini": "end, tip<br>completed, finished, past, done, ago<br>finish, close, end, turn off",
+  "pipi": "bug, insect, spider",
+  "poka": "side, hip, next to<br>in the accompaniment of, with<br>neighbouring",
+  "poki": "container, box, bowl, cup, glass",
+  "pona": "good, simplicity, positivity<br>good, simple, positive, nice, correct, right<br>great! good! thanks! OK! cool! yay!<br>improve, fix, repair, make good",
+  "pu": "interact with the official toki pona book",
+  "sama": "same, similar, equal, of equal status or position<br>like, as, seem",
+  "seli": "fire, warmth, heat<br>hot, warm, cooked<br>heat, warm up, cook",
+  "selo": "outside, surface, skin, shell, bark, shape, peel",
+  "seme": "what, which, wh- (question word)",
+  "sewi": "high, up, above, top, over, on<br>superior, elevated, religious, formal",
+  "sijelo": "body, physical state",
+  "sike": "circle, wheel, sphere, ball, cycle<br>round, cyclical",
+  "sin": "new, fresh, another, more<br>renew, renovate, freshen",
+  "sina": "you<br>your",
+  "sinpin": "front, chest, torso, face, wall",
+  "sitelen": "picture, image<br>draw, write",
+  "sona": "knowledge, wisdom, intelligence, understanding<br>know, understand, know how to<br>know, understand<br>learn, study",
+  "soweli": "animal, especially land mammal, lovable animal",
+  "suli": "big, tall, long, adult, important<br>enlarge, lengthen<br>size",
+  "suno": "sun, light",
+  "supa": "horizontal surface, e.g furniture, table, chair, pillow, floor",
+  "suwi": "candy, sweet food<br>sweeten",
+  "tan": "from, by, because of, since<br>origin, cause",
+  "taso": "only, sole<br>but",
+  "tawa": "to, in order to, towards, for, until<br>go to, walk, travel, move, leave<br>movement, transportation<br>moving, mobile<br>move, displace",
+  "telo": "water, liquid, juice, sauce<br>water, wash with water",
+  "tenpo": "time, period of time, moment, duration, situation",
+  "toki": "language, talking, speech, communication<br>talking, verbal<br>say<br>talk, chat, communicate<br>hello! hi!",
+  "tomo": "indoor constructed space, e.g. house, home, room, building<br>urban, domestic, household",
+  "tonsi": "non-binary, transgender, non-conforming",
+  "tu": "two<br>duo, pair<br>double, separate/cut/divide in two",
+  "unpa": "sex, sexuality<br>erotic, sexual<br>have sex with, sleep with, fuck<br>have sex",
+  "uta": "mouth<br>oral",
+  "utala": "conflict, disharmony, competition, fight, war, battle, attack, blow, argument, physical or verbal violence<br>hit, strike, attack, compete against",
+  "walo": "white, light (colour)<br>white thing or part, whiteness, lightness",
+  "wan": "one, a<br>unit, element, particle, part, piece<br>unite, make one",
+  "waso": "bird, winged animal",
+  "wawa": "energy, strength, power<br>energetic, strong, fierce, intense, sure, confident<br>strengthen, energize, empower",
+  "weka": "away, absent, missing<br>absence<br>throw away, remove, get rid of",
+  "wile": "to want, need, wish, have to, must, will, should<br>desire, need, will<br>necessary"
 }
 
 function searchdic(words, substring) {
@@ -506,8 +134,8 @@ function searchdic(words, substring) {
 
   for (let key in words) {
     // Check if the word starts with the substring or if its meaning contains the substring
-    if (key.text.startsWith(substring) || words[key].synonims.includes(substring)) {
-      arr.push(key.text);
+    if (key.startsWith(substring) || words[key].includes(substring)) {
+      arr.push(key);
     }
   }
 
@@ -541,6 +169,5 @@ function search_word() {
   $("#list").html(wordsstr);
 }
 
-$(document).ready(search_word); 
-
+$(document).ready(search_word);
 
